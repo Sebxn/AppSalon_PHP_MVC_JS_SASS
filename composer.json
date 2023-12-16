@@ -1,0 +1,22 @@
+{
+    "name": "seban/app-salon_php_mvc_js_sass",
+    "description": "Proyecto php 8, MVC, SQL, SASS, GULP",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "MVC\\" : "./",
+            "Controllers\\" : "./controllers",
+            "Model\\" : "./models",
+            "Classes\\" : "./classes"	
+        }
+    },
+    "authors": [
+        {
+            "name": "Sebxn",
+            "email": "snaranjo@utem.cl"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    }
+}
