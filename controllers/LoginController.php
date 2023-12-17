@@ -83,10 +83,6 @@ class LoginController
                     $email->enviarInstrucciones();
 
                     Usuario::setAlerta('exito', 'Se ha enviado instrucciones a tu email para reestablecer tu contraseña');
-                    
-                    
-
-                    
 
                     // // redireccionar
                     // header('Location: /mensaje');

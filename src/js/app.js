@@ -3,6 +3,7 @@ const pasoInicial = 1;
 const pasoFinal = 3;
 
 const cita = {
+    id: '',
     nombre: '',
     fecha: '',
     hora: '',
@@ -23,6 +24,7 @@ function iniciarApp() {
 
     consultarAPI(); // consulta la API en el backend de php
 
+    idCliente(); // almacena el id del cliente al objeto de cita
     nombreCliente(); // almacena el nombre del cliente al objeto de cita
     selecionarFecha(); // almacena la fecha seleccionada al objeto de cita
     seleccionarHora(); // almacena la hora seleccionada al objeto de cita
@@ -169,8 +171,12 @@ function seleccionarServicio(servicio) {
     }
     
     divServicio.classList.toggle('seleccionado');
-    console.log(cita);
     
+    
+}
+
+function idCliente() {
+    cita.id = document.querySelector('#id').value;
 }
 
 function nombreCliente() {
@@ -313,7 +319,7 @@ function mostrarResumen() {
     const botonReservar = document.createElement('BUTTON');
     botonReservar.classList.add('boton');
     botonReservar.textContent = 'Reservar Cita';
-    botonReservar.onclick = reservarCita
+    botonReservar.onclick = reservarCita;
 
     resumen.appendChild(nombreCliente);
     resumen.appendChild(fechaCita);
@@ -322,6 +328,51 @@ function mostrarResumen() {
     resumen.appendChild(botonReservar);
 }
 
-function reservarCita() {
-       
+async function reservarCita() {
+
+    const { fecha, hora, servicios, id} = cita;
+
+    const idServicios = servicios.map( servicio => servicio.id);
+
+    const datos = new FormData();
+    
+    datos.append('fecha', fecha);
+    datos.append('hora', hora);
+    datos.append('usuarioId', id);
+    datos.append('servicios', idServicios);
+
+    try {
+       // Peticion hacia la API
+        const url = 'http://localhost:3000/api/citas';
+
+        const respuesta = await fetch(url, {
+            method: 'POST', 
+            body: datos
+        });
+
+        const resultado = await respuesta.json();
+        
+
+        if(resultado.resultado){
+            Swal.fire({
+                icon: "success",
+                title: "Genial!",
+                text: "Tu cita ha sido reservada correctamente",
+            }).then( () => {
+                setTimeout(() => {
+                    window.location.reload();  
+                }, 3000);
+                      
+            })
+        } 
+    } catch (error) {
+        Swal.fire({
+            icon: "error",
+            title: "Error!",
+            text: "algo salio mal",
+        });        
+    }
+    
+    
+    // console.log([...datos]); // para ver los datos que se envian al backend
 }
