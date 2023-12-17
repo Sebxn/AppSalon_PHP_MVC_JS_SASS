@@ -18,7 +18,7 @@
 
     <div class="campo">
         <label for="celular">Celular</label>
-        <input type="tel" id="celular" name="celular" placeholder="Celular" value="<?php echo s($usuario->celular); ?>">
+        <input type="tel" id="celular" name="celular" placeholder="(ej: 9XXXXXXXX)" value="<?php echo s($usuario->celular); ?>">
     </div>
 
     <div class="campo">
@@ -28,7 +28,7 @@
 
     <div class="campo">
         <label for="password">Contraseña</label>
-        <input type="password" id="password" name="password" placeholder="Contraseña">
+        <input type="password" id="password" name="password" placeholder="La Contraseña debe tener mas de 6 caracteres">
     </div>
 
     <input type="submit" value="Crear Cuenta" class="boton">
