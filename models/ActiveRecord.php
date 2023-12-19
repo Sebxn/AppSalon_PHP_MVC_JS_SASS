@@ -111,14 +111,14 @@ class ActiveRecord {
 
     // Busca un registro por su id
     public static function find($id) {
-        $query = "SELECT * FROM " . static::$tabla  ." WHERE id = ${id}";
+        $query = "SELECT * FROM " . static::$tabla  ." WHERE id = $id";
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }
 
     // Obtener Registros con cierta cantidad
     public static function get($limite) {
-        $query = "SELECT * FROM " . static::$tabla . " LIMIT ${limite}";
+        $query = "SELECT * FROM " . static::$tabla . " LIMIT $limite";
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }
@@ -127,6 +127,12 @@ class ActiveRecord {
         $query = "SELECT * FROM " . static::$tabla  ." WHERE $columna = '$valor'";
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
+    }
+
+    //Consulta plana de SQL (Utilizar cuando los metodos del modelo no son suficientes)
+    public static function SQL($query) {       
+        $resultado = self::consultarSQL($query);
+        return $resultado;
     }
 
     // crea un nuevo registro

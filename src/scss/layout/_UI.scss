@@ -21,7 +21,11 @@
     .app {
         width: 95%;
         margin: 0 auto;
-        padding: 3rem 0;
+        padding: 3rem;
+
+        @include m.tablet {
+            overflow: auto; // para que la imagen no se mueva en el scroll
+        }
     }
 }
 
@@ -37,5 +41,19 @@
     .boton {
         @include m.boton(v.$negro, v.$blanco);
         margin: 0;
+    }
+}
+
+.barra-servicios {
+    margin-bottom: v.$separacion;
+
+    @include m.tablet {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .boton {
+        margin: 0 0 1rem 0;
     }
 }
