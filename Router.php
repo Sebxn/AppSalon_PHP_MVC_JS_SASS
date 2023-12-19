@@ -19,16 +19,7 @@ class Router
 
     public function comprobarRutas()
     {
-        
-        // Proteger Rutas...
-        session_start();
-
-        // Arreglo de rutas protegidas...
-        // $rutas_protegidas = ['/admin', '/propiedades/crear', '/propiedades/actualizar', '/propiedades/eliminar', '/vendedores/crear', '/vendedores/actualizar', '/vendedores/eliminar'];
-
-        // $auth = $_SESSION['login'] ?? null;
-
-        $currentUrl = $_SERVER['PATH_INFO'] ?? '/';
+        $currentUrl = strtok($_SERVER['REQUEST_URI'], '?') ?? '/'; // strtok() devuelve la primera parte de un string, en este caso la url, hasta el signo de interrogación, si lo hubiera
         $method = $_SERVER['REQUEST_METHOD'];
 
         if ($method === 'GET') {
