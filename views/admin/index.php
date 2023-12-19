@@ -4,7 +4,7 @@
     include_once __DIR__ . '/../templates/barra.php';
 ?>
 
-<h2>Buscar citas</h2>
+<h2>Buscar citas</h2>api
 
 <div class="busqueda">
     <form class="formulario">
@@ -25,6 +25,7 @@
 <div id="citas-admin">
     <ul class="citas">
         <?php 
+            $idCita = 0;           
             foreach($citas as $key => $cita){
                 if($idCita !== $cita->id) {   
                     $total = 0;       
