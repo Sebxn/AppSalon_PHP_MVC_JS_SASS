@@ -351,7 +351,7 @@ async function reservarCita() {
         });
 
         const resultado = await respuesta.json();
-        
+        console.log(resultado);
 
         if(resultado.resultado){
             Swal.fire({
@@ -374,5 +374,5 @@ async function reservarCita() {
     }
     
     
-    // console.log([...datos]); // para ver los datos que se envian al backend
+    //console.log([...datos]); // para ver los datos que se envian al backend
 }
