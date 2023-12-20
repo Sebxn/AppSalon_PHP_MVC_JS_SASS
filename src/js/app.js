@@ -344,7 +344,7 @@ async function reservarCita() {
     try {
        // Peticion hacia la API
         const url = `${location.origin}/api/citas`;
-
+        console.log(url);
         const respuesta = await fetch(url, {
             method: 'POST', 
             body: datos
