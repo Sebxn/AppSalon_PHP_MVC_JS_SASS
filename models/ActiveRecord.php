@@ -74,8 +74,9 @@ class ActiveRecord {
     public function sanitizarAtributos() {
         $atributos = $this->atributos();
         $sanitizado = [];
-        foreach($atributos as $key => $value ) {
-            $sanitizado[$key] = self::$db->escape_string($value);
+        foreach ($atributos as $key => $value) {
+            // Verifica si el valor no es nulo antes de llamar a escape_string
+            $sanitizado[$key] = is_null($value) ? null : self::$db->escape_string($value);
         }
         return $sanitizado;
     }
